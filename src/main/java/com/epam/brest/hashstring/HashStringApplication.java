@@ -10,5 +10,6 @@ public class HashStringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HashStringApplication.class, args);
+
 	}
 }
