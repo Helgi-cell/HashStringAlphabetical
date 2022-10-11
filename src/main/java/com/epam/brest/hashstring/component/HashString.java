@@ -62,10 +62,10 @@ public class HashString {
     static private Double getHashString(String string, Integer foundation){
         Double hash = 0.0 ;
         short [] charsToInteger = getCharArray(string);
-        double step = Double.MAX_VALUE / 257 - foundation;
+        double step = Double.MAX_VALUE / 256 - foundation;
         for (int i = 0; i < charsToInteger.length ; i++ ){
             hash += charsToInteger[i] * step;
-            step = step / 256;
+            step = step / 2 - 1;
         }
         return hash;
     }
@@ -75,7 +75,7 @@ public class HashString {
         short [] bytes = new short [chars.length];
         for (int i = 0; i < chars.length; i++){
             bytes [i] = (short) (chars[i] & 0x00FF);
-            System.out.println("bytes [" + i + "] = " + bytes[i]);
+            //System.out.println("bytes [" + i + "] = " + bytes[i]);
         }
         return bytes;
     }

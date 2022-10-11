@@ -9,13 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HashStringApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(HashStringApplication.class, args);
-
-		HashString hashString = new HashString("Aleh", 200);
-		System.out.println("Hash " + hashString.getString() + " = " + hashString.getHash());
-		hashString = new HashString("Alehz", 200);
-		System.out.println("Hash " + hashString.getString() + " = " + hashString.getHash());
 	}
-
 }
