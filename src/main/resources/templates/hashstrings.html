@@ -37,11 +37,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="hashstring : ${hashstrings}"
-        th:style="${hashstring}? 'font-weight: 30;'">
-        <td th:text="${hashstring.getId()}" ></td>
-        <td th:text="${hashstring.getHash()}" ></td>
-        <td th:text="${hashstring.getString()}" ></td>
+    <tr th:each="hashstrings : ${hashstrings}"
+        th:style="${hashstrings}? 'font-weight: 30;'">
+        <td th:text="${hashstrings.getId()}" ></td>
+        <td th:text="${hashstrings.getHash()}" ></td>
+        <td th:text="${hashstrings.getString()}" ></td>
      <!--
 
       <td> <a th:href="@{/lector/requests/{id}(id=${lector.idLector})}" th:text="Requests">lector</a></td>
@@ -55,26 +55,10 @@
     </tbody>
 </table>
 
-<form th:method="GET" th:action="@{/lector/new}">
-    <input type="submit" value="Insert new lector"/>
+<form th:method="GET" th:action="@{/hashstring/new}">
+    <input type="submit" value="Insert new STRING"/>
 </form>
 <br/>
-
-<form th:method="GET" th:action="@{/groups}">
-    <input type="submit" value="SHOW GROUPS"/>
-</form>
-<br/>
-
-<br/>
-<form th:method="GET" th:action="@{/createschedule}">
-    <input type="submit" value="CREATE SCHEDULE"/>
-</form>
-
-<br/>
-<form th:method="GET" th:action="@{/schedule}">
-    <input type="submit" value="SCHEDULE for ALL students"/>
-</form>
-</body>
 
 </html>
 

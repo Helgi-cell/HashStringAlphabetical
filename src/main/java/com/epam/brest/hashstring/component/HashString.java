@@ -24,7 +24,19 @@ public class HashString {
         this.hash = getHashString(string, foundation);
     }
 
+    public HashString(Long id, String string, Double hash, Integer foundation) {
+        this.id = id;
+        this.string = string;
+        this.hash = hash;
+        this.foundation = foundation;
+    }
+
     public HashString() {
+    }
+
+    public HashString(Long id, String string) {
+        this.id = id;
+        this.string = string;
     }
 
     public Long getId() {

@@ -23,7 +23,8 @@ public class HashStringService {
         return hashStringJpaRepo.getAllStrings();
     }
 
-    public Long saveNewHashString (HashString hashString){
-        return hashStringJpaRepo.saveNewHashString(hashString);
+    public Long saveNewHashString (HashString string){
+
+        return hashStringJpaRepo.saveNewHashString(string);
     }
 }
