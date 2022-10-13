@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HashStringController {
     @Autowired (required = true)
-    HashStringService hashStringService;
+    private HashStringService hashStringService;
 
     @GetMapping(value = "/hashstrings")
     public final String lectors (Model model) {
-        model.addAttribute("strings", hashStringService.getAllHashStrings());
+        model.addAttribute("hashstrings", hashStringService.getAllHashStrings());
         return "hashstrings";
     }
 

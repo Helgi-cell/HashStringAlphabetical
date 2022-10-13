@@ -25,27 +25,32 @@
 <body>
 <center><h3> Schedule from lectors requests </h3></center>
 
-<table  summary="Table of lectors" border="1" cellspacing="2" align="center" >
+<table  summary="Table of sorted strings" border="1" cellspacing="2" align="center" >
     <caption>lectors table</caption>
 
     <thead>
     <tr>
-        <th>   Name   </th>
-        <th>   Check requests  </th>
-        <th>   Show lector  </th>
-        <th>   Schedule  </th>
+        <th>   id   </th>
+        <th>   hash  </th>
+        <th>   string  </th>
+        <th>     </th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="lector : ${lectors}"
-        th:style="${lector}? 'font-weight: 30;'">
-        <td th:text="${lector.nameLector}" ></td>
-        <td> <a th:href="@{/lector/requests/{id}(id=${lector.idLector})}" th:text="Requests">lector</a></td>
+    <tr th:each="hashstring : ${hashstrings}"
+        th:style="${hashstring}? 'font-weight: 30;'">
+        <td th:text="${hashstring.getId()}" ></td>
+        <td th:text="${hashstring.getHash()}" ></td>
+        <td th:text="${hashstring.getString()}" ></td>
+     <!--
+
+      <td> <a th:href="@{/lector/requests/{id}(id=${lector.idLector})}" th:text="Requests">lector</a></td>
         <td> <a th:href="@{/lector/show/{id} (id=${lector.idLector})}" th:text="Edit">lector</a></td>
         <td>
             <form th:method="GET" th:action="@{/lectorschedule/{id} (id=${lector.idLector})}">
                 <input type="submit" value="your schedule"/>
             </form></td>
+            -->
     </tr>
     </tbody>
 </table>
