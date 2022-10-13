@@ -2,15 +2,15 @@ package com.epam.brest.hashstring.component;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Comparator;
 
-@Component
+//@Component
 @Entity
 public class HashString {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String string;
     private Double hash;
@@ -80,3 +80,6 @@ public class HashString {
         return bytes;
     }
 }
+
+
+
