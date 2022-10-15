@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
+
 import static com.epam.brest.hashstring.component.FoundationNumber.getFoundation;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,13 +37,23 @@ class HashStringApplicationTests {
 	void stringLoad() {
 		Integer foundation = getFoundation();
 		HashString string  = new HashString("AlehSukhadolski", 200);
-		Long idHashString = hashStringService.saveNewHashString(string);
+		Long idHashString = hashStringService.saveNewHashStringService(string);
 		HashString string1  = new HashString("AlehSukhadolsky", 200);
-		Long idHashString1 = hashStringService.saveNewHashString(string1);
+		Long idHashString1 = hashStringService.saveNewHashStringService(string1);
 		//assertTrue (hashString.getHash() < hashString1.getHash());
 		//System.out.println("foundation = " + foundation);
 		assertTrue (idHashString > 0);
 		assertTrue (idHashString1 > 0);
+	}
+
+	@Test
+	void getEmptyList(){
+		HashString string  = new HashString("AlehSukhadolski", 200);
+		Long idHashString = hashStringService.saveNewHashStringService(string);
+		HashString string1  = new HashString("AlehSukhadolsky", 200);
+		Long idHashString1 = hashStringService.saveNewHashStringService(string1);
+		List<HashString> hashStrings = hashStringService.getAllHashStringsService();
+		assertTrue(!hashStrings.isEmpty());
 	}
 
 }

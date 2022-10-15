@@ -40,9 +40,17 @@
     <tr th:each="hashstrings : ${hashstrings}"
         th:style="${hashstrings}? 'font-weight: 30;'">
         <td th:text="${hashstrings.getId()}" ></td>
-        <td th:text="${hashstrings.getHash()}" ></td>
+        <td th:text="${hashstrings.getHashing()}" ></td>
         <td th:text="${hashstrings.getString()}" ></td>
-     <!--
+
+        <td>
+            <form th:method="GET" th:action="@{/hashstring/{id}/delete (id=${hashstrings.id})}">
+                <input type="submit" value="DELETE"/>
+            </form>
+        </td>
+
+
+        <!--
 
       <td> <a th:href="@{/lector/requests/{id}(id=${lector.idLector})}" th:text="Requests">lector</a></td>
         <td> <a th:href="@{/lector/show/{id} (id=${lector.idLector})}" th:text="Edit">lector</a></td>

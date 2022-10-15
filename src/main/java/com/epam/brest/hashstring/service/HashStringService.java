@@ -4,27 +4,33 @@ import com.epam.brest.hashstring.component.HashString;
 import com.epam.brest.hashstring.jparepositories.HashStringJpaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@ComponentScan ("com.epam.brest.*")
-//@EnableJpaRepositories
+@ComponentScan("com.epam.brest.*")
 public class HashStringService {
     @Autowired
     private HashStringJpaRepo hashStringJpaRepo;
 
+    public List<HashString> getAllHashStringsService() {
+        List<HashString> hashStrings = hashStringJpaRepo.getAllStrings();
 
-
-    public List <HashString> getAllHashStrings (){
-        return hashStringJpaRepo.getAllStrings();
+        if (hashStrings != null) {
+            hashStrings = hashStrings.stream()
+                    .sorted(Comparator.comparingLong(HashString::getHashing))
+                    .collect(Collectors.toList());
+        }
+        return hashStrings;
     }
 
-    public Long saveNewHashString (HashString string){
-
+    public Long saveNewHashStringService(HashString string) {
         return hashStringJpaRepo.saveNewHashString(string);
+    }
+
+    public void deleteHashStringService(Long id) {
+        hashStringJpaRepo.deleteHashString(id);
     }
 }

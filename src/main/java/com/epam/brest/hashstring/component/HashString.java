@@ -1,33 +1,30 @@
 package com.epam.brest.hashstring.component;
 
-import org.springframework.stereotype.Component;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Comparator;
 
-//@Component
 @Entity
+@Data
 public class HashString {
     @Id
     @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String string;
-    private Double hash;
+    private long hashing;
     private Integer foundation;
-
-
 
     public HashString(String string, Integer foundation) {
         this.string = string;
         this.foundation = foundation;
-        this.hash = getHashString(string, foundation);
+        this.hashing = getHashString(string, foundation);
     }
 
-    public HashString(Long id, String string, Double hash, Integer foundation) {
+    public HashString(Long id, String string, Long hash, Integer foundation) {
         this.id = id;
         this.string = string;
-        this.hash = hash;
+        this.hashing = hash;
         this.foundation = foundation;
     }
 
@@ -35,61 +32,31 @@ public class HashString {
     }
 
     public HashString(Long id, String string) {
-        this.id = id;
+        this.id = 0L;
         this.string = string;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getString() {
-        return string;
-    }
-
-    public void setString(String string) {
-        this.string = string;
-    }
-
-    public Double getHash() {
-        return hash;
-    }
-
-    public void setHash(Double hash) {
-        this.hash = hash;
-    }
-
-    public Integer getFoundation() {
-        return foundation;
-    }
-
-    public void setFoundation(Integer foundation) {
-        this.foundation = foundation;
-    }
-
-    static private Double getHashString(String string, Integer foundation){
-        Double hash = 0.0 ;
-        short [] charsToInteger = getCharArray(string);
-        double step = Double.MAX_VALUE / 256 - foundation;
-        for (int i = 0; i < charsToInteger.length ; i++ ){
-            hash += charsToInteger[i] * step;
-            step = step / 2 - 1;
+    private long getHashString(String string, Integer foundation) {
+        long hash = 0L;
+        long[] charsToLong = getCharArray(string);
+        long step = Long.MAX_VALUE / 256 - foundation;
+        Long chars = 0L;
+        for (int i = 0; i < charsToLong.length; i++) {
+            hash += charsToLong[i] * step;
+            step = step / 256;
         }
         return hash;
     }
 
-    static private short [] getCharArray(String string){
-        char [] chars = string.toLowerCase().toCharArray();
-        short [] bytes = new short [chars.length];
-        for (int i = 0; i < chars.length; i++){
-            bytes [i] = (short) (chars[i] & 0x00FF);
-            //System.out.println("bytes [" + i + "] = " + bytes[i]);
+    private long[] getCharArray(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        int[] bytes = new int[chars.length];
+        long[] longs = new long[chars.length];
+        for (int i = 0; i < chars.length; i++) {
+            bytes[i] = (chars[i]) & 0x0000_FFFF;
+            longs[i] = bytes[i];
         }
-        return bytes;
+        return longs;
     }
 }
 

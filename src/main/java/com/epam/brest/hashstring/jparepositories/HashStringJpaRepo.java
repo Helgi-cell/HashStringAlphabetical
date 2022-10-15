@@ -1,27 +1,28 @@
 package com.epam.brest.hashstring.jparepositories;
 
-import com.epam.brest.hashstring.component.HashComparator;
 import com.epam.brest.hashstring.component.HashString;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public interface HashStringJpaRepo extends JpaRepository <HashString, Long> {
+public interface HashStringJpaRepo extends JpaRepository<HashString, Long> {
 
-    default List<HashString> getAllStrings(){
-
-        return findAll()
-                .stream()
-                .sorted(new HashComparator().thenComparingDouble(HashString::getHash))
-                .collect(Collectors.toList());
+    default List<HashString> getAllStrings() {
+        return findAll();
     }
 
-
-    default Long saveNewHashString (HashString hashString){
-       return save(hashString).getId();
+    default Long saveNewHashString(HashString hashString) {
+        return save(hashString).getId();
     }
 
+    default void deleteHashString(Long id) {
+        deleteById(id);
+    }
 }
