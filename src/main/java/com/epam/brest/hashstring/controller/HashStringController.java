@@ -40,6 +40,4 @@ public class HashStringController {
         return "redirect:/hashstrings";
     }
 
-
-
 }
