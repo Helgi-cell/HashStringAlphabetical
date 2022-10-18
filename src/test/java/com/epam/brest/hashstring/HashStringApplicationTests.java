@@ -36,14 +36,22 @@ class HashStringApplicationTests {
 	@Test
 	void stringLoad() {
 		Integer foundation = getFoundation();
-		HashString string  = new HashString("AlehSukhadolski", 200);
+		HashString string  = new HashString("abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 1000);
 		Long idHashString = hashStringService.saveNewHashStringService(string);
-		HashString string1  = new HashString("AlehSukhadolsky", 200);
+		HashString string1  = new HashString("abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", 1000);
 		Long idHashString1 = hashStringService.saveNewHashStringService(string1);
-		//assertTrue (hashString.getHash() < hashString1.getHash());
-		//System.out.println("foundation = " + foundation);
-		assertTrue (idHashString > 0);
-		assertTrue (idHashString1 > 0);
+		System.out.println(idHashString + " < " + idHashString1 );
+		assertTrue (idHashString < idHashString1);
+		//assertTrue (idHashString > 0);
+		//assertTrue (idHashString1 > 0);
+		string  = new HashString("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy", 1000);
+		idHashString = hashStringService.saveNewHashStringService(string);
+		string1  = new HashString("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", 1000);
+		idHashString1 = hashStringService.saveNewHashStringService(string1);
+		assertTrue (idHashString < idHashString1);
+		System.out.println(idHashString + " < " + idHashString1 );
+		//assertTrue (idHashString > 0);
+		//assertTrue (idHashString1 > 0);
 	}
 
 	@Test

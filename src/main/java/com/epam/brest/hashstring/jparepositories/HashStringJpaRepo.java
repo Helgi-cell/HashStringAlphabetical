@@ -19,7 +19,7 @@ public interface HashStringJpaRepo extends JpaRepository<HashString, Long> {
     }
 
     default Long saveNewHashString(HashString hashString) {
-        return save(hashString).getId();
+        return save(hashString).getHashing();
     }
 
     default void deleteHashString(Long id) {

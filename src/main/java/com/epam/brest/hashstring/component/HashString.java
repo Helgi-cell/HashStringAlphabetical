@@ -21,7 +21,7 @@ public class HashString {
         this.hashing = getHashString(string, foundation);
     }
 
-    public HashString(Long id, String string, Long hash, Integer foundation) {
+    public HashString(Long id, String string, long hash, Integer foundation) {
         this.id = id;
         this.string = string;
         this.hashing = hash;
@@ -38,25 +38,28 @@ public class HashString {
 
     private long getHashString(String string, Integer foundation) {
         long hash = 0L;
-        long[] charsToLong = getCharArray(string);
-        long step = Long.MAX_VALUE / 256 - foundation;
-        Long chars = 0L;
+        long [] charsToLong = getCharArray(string);
+        long step = Long.MAX_VALUE - 26L - foundation * 1L ;
+
         for (int i = 0; i < charsToLong.length; i++) {
-            hash += charsToLong[i] * step;
-            step = step / 256;
+            hash += (charsToLong[i] + step) ;
+            step =  step / 2L - 1L;
         }
+
         return hash;
     }
 
-    private long[] getCharArray(String string) {
-        char[] chars = string.toLowerCase().toCharArray();
-        int[] bytes = new int[chars.length];
-        long[] longs = new long[chars.length];
+    private  long[] getCharArray(String string) {
+        char[] chars = string.toUpperCase().toCharArray();
+        long[] bytes = new long[chars.length];
+        int j = 0;
         for (int i = 0; i < chars.length; i++) {
-            bytes[i] = (chars[i]) & 0x0000_FFFF;
-            longs[i] = bytes[i];
+            if (((chars[i]* 1L) & 0x0000_0000_0000_FFFF) > 64 && ((chars[i] * 1L) & 0x0000_0000_0000_FFFF) < 91){
+                bytes[j] = ((chars[i] * 1L) & 0x0000_0000_0000_FFFF) - 64L;
+                j++;
+            }
         }
-        return longs;
+        return bytes;
     }
 }
 
