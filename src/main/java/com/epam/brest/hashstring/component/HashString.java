@@ -80,7 +80,7 @@ public class HashString {
 
         BigInteger result = new BigInteger("0");
 
-        BigInteger[] charsToBigInteger = getCharArray(string);
+        BigInteger [] charsToBigInteger = getCharArray(string);
 
         BigInteger[] charsToDouble = new BigInteger[charsToBigInteger.length];
 
