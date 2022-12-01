@@ -5,6 +5,8 @@ import com.epam.brest.hashstring.jparepositories.HashStringJpaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+
+import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,13 +22,13 @@ public class HashStringService {
 
         if (hashStrings != null) {
             hashStrings = hashStrings.stream()
-                    .sorted(Comparator.comparingLong(HashString::getHashing))
+                    .sorted(Comparator.comparing(HashString::getHashing))
                     .collect(Collectors.toList());
         }
         return hashStrings;
     }
 
-    public Long saveNewHashStringService(HashString string) {
+    public String saveNewHashStringService(HashString string) {
         return hashStringJpaRepo.saveNewHashString(string);
     }
 

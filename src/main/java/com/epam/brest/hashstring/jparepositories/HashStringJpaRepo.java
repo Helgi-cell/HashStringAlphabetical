@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,7 +19,7 @@ public interface HashStringJpaRepo extends JpaRepository<HashString, Long> {
         return findAll();
     }
 
-    default Long saveNewHashString(HashString hashString) {
+    default String saveNewHashString(HashString hashString) {
         return save(hashString).getHashing();
     }
 
