@@ -5,10 +5,15 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>NEW LECTOR</title>
+    <title>NEW STRING</title>
 </head>
 <body>
-<div><center><h3>Creating new string</h3></center></div>
+<div>
+    <center>
+        <h3>Creating new string</h3>
+        <h4> Type new string </h4>
+    </center>
+</div>
 <center>
     <form th:method="POST" th:action="@{/newHashString}" th:object="${hashstring}">
         <label for="id">ID : </label>
@@ -18,7 +23,6 @@
         <label for="string">Enter new string: </label>
         <input type="text" th:field="*{string}" id="string"/>
         <br/>
-
 
         <input type="submit" value="Create new string"/>
     </form>

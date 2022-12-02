@@ -12,11 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 import javax.transaction.Transactional;
-
-import java.math.BigInteger;
 import java.util.List;
-
-import static com.epam.brest.hashstring.component.FoundationNumber.getFoundation;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -33,9 +29,6 @@ class HashStringApplicationTests {
 		assertTrue(hashStringService != null);
 	}
 
-
-
-
 	@Test
 	void isMaxSymbols () {
 		HashString string  = new HashString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 1000);
@@ -44,10 +37,7 @@ class HashStringApplicationTests {
 		String idHashString1 = hashStringService.saveNewHashStringService(string1);
 		List<HashString> strings = hashStringService.getAllHashStringsService();
 		assertTrue (string.getHashing().compareTo(string1.getHashing()) < 0 );
-		//assertTrue (idHashString.compareTo(idHashString1) > 0 );
-
 	}
-
 
 	@Test
 	void isSymbols () {

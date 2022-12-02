@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,20 +19,16 @@ public class HashStringService {
 
     public List<HashString> getAllHashStringsService() {
         List<HashString> hashStrings = hashStringJpaRepo.getAllStrings();
-
-        if (hashStrings != null) {
-            hashStrings = hashStrings.stream()
+        if (!hashStrings.isEmpty()) {
+            return hashStrings.stream()
                     .sorted(Comparator.comparing(HashString::getHashing))
                     .collect(Collectors.toList());
+        } else {
+            return new ArrayList<HashString>();
         }
-        return hashStrings;
     }
 
-    public String saveNewHashStringService(HashString string) {
-        return hashStringJpaRepo.saveNewHashString(string);
-    }
+    public String saveNewHashStringService(HashString string) {return hashStringJpaRepo.saveNewHashString(string);}
 
-    public void deleteHashStringService(Long id) {
-        hashStringJpaRepo.deleteHashString(id);
-    }
+    public void deleteHashStringService(Long id) {hashStringJpaRepo.deleteHashString(id);}
 }

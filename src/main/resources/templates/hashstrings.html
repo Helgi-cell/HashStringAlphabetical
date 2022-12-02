@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
 <head>
     <meta charset="utf-8"/>
     <title>HASH-STRINGS</title>
     <style type="text/css">
    TABLE {
-    width: 1000px;
+    width: 1300px;
    }
    TH {
     background: #4b0082;
@@ -16,58 +13,45 @@
    TD, TH {
     padding: 3px;
    }
-  </style>
-
+    </style>
 </head>
 
-
-
 <body>
-<center><h3> Schedule from lectors requests </h3></center>
+<div align="center">
+    <form   th:method="GET" th:action="@{/hashstring/new}">
+        <input type="submit" value="Insert new STRING"/>
+    </form>
+</div>
+<center><h3> Sorted HashString Table </h3></center>
 
-<table  summary="Table of sorted strings" border="1" cellspacing="2" align="center" >
-    <caption>lectors table</caption>
+<table summary="Table of sorted strings" border="1" cellspacing="2" align="center">
+    <caption>Hash Table</caption>
 
     <thead>
     <tr>
-        <th>   id   </th>
-        <th>   hash  </th>
-        <th>   string  </th>
-        <th>     </th>
+        <th> id</th>
+        <th> hash</th>
+        <th> string</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="hashstrings : ${hashstrings}"
         th:style="${hashstrings}? 'font-weight: 30;'">
-        <td th:text="${hashstrings.getId()}" ></td>
-        <td th:text="${hashstrings.getHashing()}" ></td>
-        <td th:text="${hashstrings.getString()}" ></td>
+        <td th:text="${hashstrings.getId()}"></td>
+        <td th:text="${hashstrings.getHashing()}"></td>
+        <td th:text="${hashstrings.getString()}"></td>
 
         <td>
             <form th:method="GET" th:action="@{/hashstring/{id}/delete (id=${hashstrings.id})}">
                 <input type="submit" value="DELETE"/>
             </form>
         </td>
-
-
-        <!--
-
-      <td> <a th:href="@{/lector/requests/{id}(id=${lector.idLector})}" th:text="Requests">lector</a></td>
-        <td> <a th:href="@{/lector/show/{id} (id=${lector.idLector})}" th:text="Edit">lector</a></td>
-        <td>
-            <form th:method="GET" th:action="@{/lectorschedule/{id} (id=${lector.idLector})}">
-                <input type="submit" value="your schedule"/>
-            </form></td>
-            -->
     </tr>
     </tbody>
 </table>
 
-<form th:method="GET" th:action="@{/hashstring/new}">
-    <input type="submit" value="Insert new STRING"/>
-</form>
 <br/>
-
+</body>
 </html>
 
-Footer
