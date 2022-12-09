@@ -32,15 +32,17 @@ public class HashStringController {
     @PostMapping(value = "/newHashString")
     public String create(@ModelAttribute("hashstring") HashString hashString,
                          Model model) throws SQLException {
-        HashString hash = new HashString(hashString.getString(), 200);
-        hashStringService.saveNewHashStringService(hash);
+
+        HashString hashString1 = hashString;
+        hashStringService.saveNewHashStringService(new HashString(hashString.getString(),
+                                                   hashStringService.createNewHashStringService(hashString.getString(),
+                                                           200), 200));
         return "redirect:/hashstrings";
     }
 
     @GetMapping(value = "/hashstring/{id}/delete")
-    public String delete(@PathVariable("id") int id) {
-        long idHash = id;
-        hashStringService.deleteHashStringService(idHash);
+    public String delete(@PathVariable("id") long id) {
+        hashStringService.deleteHashStringService(id);
         return "redirect:/hashstrings";
     }
 }

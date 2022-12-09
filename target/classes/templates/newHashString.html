@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>NEW STRING</title>
+</head>
+<body>
+<div>
+    <center>
+        <h3>Creating new string</h3>
+        <h4> Type new string </h4>
+    </center>
+</div>
+<center>
+    <form th:method="POST" th:action="@{/newHashString}" th:object="${hashstring}">
+        <!--<label for="id">ID : </label>
+        <input type="hidden" th:field="*{id}" id="id"/>
+        <br/>-->
+
+        <label for="string">Enter new string: </label>
+        <input type="text" th:field="*{string}" id="string"/>
+        <br/>
+
+        <input type="submit" value="Create new string"/>
+    </form>
+</center>
+</body>
+</html>

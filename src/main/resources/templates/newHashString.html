@@ -16,9 +16,9 @@
 </div>
 <center>
     <form th:method="POST" th:action="@{/newHashString}" th:object="${hashstring}">
-        <label for="id">ID : </label>
+        <!--<label for="id">ID : </label>
         <input type="hidden" th:field="*{id}" id="id"/>
-        <br/>
+        <br/>-->
 
         <label for="string">Enter new string: </label>
         <input type="text" th:field="*{string}" id="string"/>

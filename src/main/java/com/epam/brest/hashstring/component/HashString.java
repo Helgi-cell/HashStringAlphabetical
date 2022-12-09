@@ -1,6 +1,10 @@
 package com.epam.brest.hashstring.component;
 
+
+
+
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -17,10 +21,11 @@ public class HashString {
     private String hashing;
     private Integer foundation;
 
-    public HashString(String string, Integer foundation) {
+
+    public HashString(String string, String hashString,Integer foundation) {
         this.string = string;
         this.foundation = foundation;
-        this.hashing = HashStringEncoder.getHashString(this.string, new BigInteger(this.foundation.toString())).toString();
+        this.hashing = hashString;
     }
 
     public HashString(Long id, String string, String hash, Integer foundation) {

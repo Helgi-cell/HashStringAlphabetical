@@ -31,9 +31,11 @@ class HashStringApplicationTests {
 
 	@Test
 	void isMaxSymbols () {
-		HashString string  = new HashString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 1000);
+		HashString string  = new HashString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+				hashStringService.createNewHashStringService("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 1000), 1000);
 		String idHashString = hashStringService.saveNewHashStringService(string);
-		HashString string1  = new HashString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", 1000);
+		HashString string1  = new HashString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+				hashStringService.createNewHashStringService("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", 1000), 1000);
 		String idHashString1 = hashStringService.saveNewHashStringService(string1);
 		List<HashString> strings = hashStringService.getAllHashStringsService();
 		assertTrue (string.getHashing().compareTo(string1.getHashing()) < 0 );
