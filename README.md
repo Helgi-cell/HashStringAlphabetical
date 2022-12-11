@@ -1,12 +1,16 @@
-# HashStringAlphabetical
+## Run the app in terminal
 
-## сам алгоритм находится в классе HashStringEncoder в пакете com.epam.brest.hashstring.component
+### __git clone https://github.com/Helgi-cell/HashStringAlphabetical -b long-hash-version__
 
-### Данный алгоритм является попыткой представления строки в виде одного числа - сигнатуры. Сортировка данных чисел по возрастанию являет собой сортировку строк по возрастанию в алфавитном порядке. (значения больших и строчных символов не учитываются)
+### __cd HashStringAlphabetical__
 
-### В основе алгоритма лежит представление строки как последовательности символов с различным весом, при этом минимальное значение любого символа в строке больше суммы самых максимальных значений всех символов, следующих за ним. МАТЕМАТИЧЕСКИЙ РЯД с правилом :
+### __java -jar target/hash-string-0.0.1-SNAPSHOT.jar__
 
-## MIN_VALUE (X) >  SUM (MAX_VALUE (X+1) ....(X+infinity)). 
+## or run the script  
+#### __./run.h__
 
-### Где Х - положение символа в строке . MIN_VALUE(X) - минимальное значение символа в строке с положением Х. 
-### MAX_VALUE (X+i) - максимальное возможные значения символов в строке положения X+i, где i - (от 1 до infinity) 
+## When the app is running open the browser and :
+### http://localhost:10999/hashstrings
+
+## todo run.h as runnable
+##### chmod ugo+x run.h
